@@ -1,0 +1,30 @@
+{{define "content"}}
+    <div class="container">
+        <h1>Dishes</h1>
+        <div class="my-2">
+            <a class="btn btn-primary" href="/dishes/create" role="button">Create dish</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Portion</th>
+                <th scope="col">Calories</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $index, $value := .Dishes}}
+                <tr>
+                    <th scope="row">{{$index}}</th>
+                    <td>{{.Id}}</td>
+                    <td>{{.Title}}</td>
+                    <td>{{.Portion}}</td>
+                    <td>{{.Calories}}</td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+{{end}}

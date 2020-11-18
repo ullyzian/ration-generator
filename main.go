@@ -1,37 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"html/template"
+	"github.com/joho/godotenv"
 	"log"
 	"net/http"
+	"ration-generator/controllers"
+	"ration-generator/db"
 )
 
-func main()  {
-	fs := http.FileServer(http.Dir("app/static"))
 
-	http.HandleFunc("/", rootHandler)
+func main() {
+	// Load .env file
+	err := godotenv.Load(".env")
+	if err != nil {
+		panic(err)
+	}
+
+	conn := db.Connect()
+	db.CreateTable(conn)
+
+	// file server
+	fs := http.FileServer(http.Dir("./static"))
+
+	// handlers
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	http.HandleFunc("/programs", programsHandler)
+	http.HandleFunc("/", controllers.RootHandler)
+	http.HandleFunc("/programs/", controllers.ProgramsHandler)
+	http.HandleFunc("/dishes/create/", controllers.CreateDish)
+	http.HandleFunc("/dishes/", controllers.GetDishes)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func render(w http.ResponseWriter, templateName string)  {
-	tmpl, err := template.ParseFiles("app/templates/base.html", fmt.Sprintf("app/templates/%v.html", templateName))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	err = tmpl.ExecuteTemplate(w, "base", "")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	render(w, "index")
-}
-
-func programsHandler(w http.ResponseWriter, r *http.Request) {
-	render(w, "programs")
-}
