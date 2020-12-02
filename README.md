@@ -12,7 +12,7 @@ lunch and dinner based on entered human parameters
 
 ## Todo
 - [x] Create basic http server on Go
-- [ ] Create database connection and quiering to PostgreSql 
+- [x] Create database connection and quiering to PostgreSql 
 - [ ] Create formula to calculate amount of calories and type of dishes
  based on given human parameters
  - [ ] Save result of ration in localstorage 
