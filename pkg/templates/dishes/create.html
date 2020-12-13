@@ -1,0 +1,55 @@
+{{define "content"}}
+    <div class="container">
+        <h1>Create dish</h1>
+        <div class="my-2">
+            <a class="btn btn-primary" href="/dishes" role="button">View dishes</a>
+        </div>
+        <form method="post" class="my-3">
+            {{ if .Dish}}
+                <div class="form-group">
+                    <label for="titleInput">Title</label>
+                    <input type="text" name="title" value="{{.Dish.Title}}" class="form-control" id="titleInput"
+                           placeholder="Title">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="portionInput">Portion</label>
+                        <input type="number" name="portion" value="{{.Dish.Portion}}" class="form-control"
+                               id="portionInput"
+                               placeholder="Portion">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="caloriesInput">Calories</label>
+                        <input type="number" name="calories" value="{{.Dish.Calories}}" class="form-control"
+                               id="caloriesInput" placeholder="Calories">
+                    </div>
+                </div>
+            {{else}}
+                <div class="form-group">
+                    <label for="titleInput">Title</label>
+                    <input type="text" name="title" value="" class="form-control" id="titleInput"
+                           placeholder="Title">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="portionInput">Portion</label>
+                        <input type="number" name="portion" value="" class="form-control"
+                               id="portionInput"
+                               placeholder="Portion">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="caloriesInput">Calories</label>
+                        <input type="number" name="calories" value="" class="form-control"
+                               id="caloriesInput" placeholder="Calories">
+                    </div>
+                </div>
+            {{ end}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {{if .Err}}
+            <div class="alert alert-danger my-3" role="alert">
+                Error: {{ .Err}}
+            </div>
+        {{end}}
+    </div>
+{{end}}

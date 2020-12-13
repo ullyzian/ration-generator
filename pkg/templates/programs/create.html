@@ -1,0 +1,28 @@
+{{define "content"}}
+    <div class="container">
+        <h1>Create program</h1>
+        <div class="my-2">
+            <a class="btn btn-primary" href="/programs" role="button">View programs</a>
+        </div>
+        <form method="post" class="my-3">
+            <div class="form-group">
+                <label for="nameInput">Name</label>
+                <input type="text" name="name" class="form-control" id="nameInput" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="dishesSelect">Select dishes</label>
+                <select multiple name="dishes" class="form-control" id="dishesSelect" size="20">
+                    {{ range .Dishes}}
+                        <option value="{{.Id}}">{{.Title}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {{if .Err}}
+            <div class="alert alert-danger my-3" role="alert">
+                Error: {{ .Err}}
+            </div>
+        {{end}}
+    </div>
+{{end}}

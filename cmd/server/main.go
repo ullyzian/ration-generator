@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/BurntSushi/toml"
-	"github.com/ullyzian/ration-generator/app/server"
+	"github.com/ullyzian/ration-generator/pkg/server"
 	"log"
 )
 

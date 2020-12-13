@@ -1,0 +1,85 @@
+{{define "content"}}
+    <div class="container">
+        <h1>Programs</h1>
+        <div class="my-2">
+            <a class="btn btn-primary" href="/programs/create" role="button">Create program</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dishes</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $index, $value := .Programs}}
+                <tr>
+                    <th scope="row">{{$index}}</th>
+                    <td>{{.Id}}</td>
+                    <td>{{.Name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{.Name}}">
+                            List
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="{{.Name}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Dishes</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="my-2">
+                                            <a class="btn btn-primary" href="/dishes/create" role="button">Create
+                                                dish</a>
+                                        </div>
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Portion</th>
+                                                <th scope="col">Calories</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{range $index, $value := .Dishes}}
+                                                <tr>
+                                                    <th scope="row">{{$index}}</th>
+                                                    <td>{{.Id}}</td>
+                                                    <td>{{.Title}}</td>
+                                                    <td>{{.Portion}}</td>
+                                                    <td>{{.Calories}}</td>
+                                                </tr>
+                                            {{end}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><a class="btn btn-warning" href="/programs/{{.Id}}/edit" role="button">Edit</a></td>
+                    <td><a class="btn btn-danger" href="/programs/{{.Id}}/delete" role="button">Delete</a></td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+{{end}}
+
