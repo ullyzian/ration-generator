@@ -10,8 +10,8 @@ type DishesRepository struct {
 }
 
 func (r *DishesRepository) Create(d *models.Dish) (*models.Dish, error) {
-	cmd := "INSERT INTO dishes(title, portion, calories) VALUES($1, $2, $3) RETURNING id"
-	if err := r.store.db.QueryRow(cmd, d.Title, d.Portion, d.Calories).Scan(&d.Id); err != nil {
+	cmd := "INSERT INTO dishes(title, portion, calories, contraindication) VALUES($1, $2, $3, $4) RETURNING id"
+	if err := r.store.db.QueryRow(cmd, d.Title, d.Portion, d.Calories, d.Contraindications).Scan(&d.Id); err != nil {
 		return nil, err
 	}
 	return d, nil
@@ -30,8 +30,8 @@ func (r *DishesRepository) Delete(id int) (int, error) {
 }
 
 func (r *DishesRepository) Edit(d *models.Dish) (*models.Dish, error) {
-	cmd := "UPDATE dishes SET title=$1, calories=$2, portion=$3 WHERE id=$4"
-	if _, err := r.store.db.Exec(cmd, d.Title, d.Calories, d.Portion, d.Id); err != nil {
+	cmd := "UPDATE dishes SET title=$1, calories=$2, portion=$3, contraindication=$4 WHERE id=$5"
+	if _, err := r.store.db.Exec(cmd, d.Title, d.Calories, d.Portion, d.Contraindications, d.Id); err != nil {
 		return nil, err
 	}
 	return d, nil
@@ -47,7 +47,7 @@ func (r *DishesRepository) GetAll() ([]models.Dish, error) {
 
 	for rows.Next() {
 		var dish models.Dish
-		if err := rows.Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories); err != nil {
+		if err := rows.Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories, &dish.Contraindications); err != nil {
 			return nil, err
 		}
 		dishes = append(dishes, dish)
@@ -57,8 +57,8 @@ func (r *DishesRepository) GetAll() ([]models.Dish, error) {
 
 func (r *DishesRepository) GetById(id int) (*models.Dish, error) {
 	dish := models.Dish{}
-	query := "SELECT id, title, portion, calories FROM dishes WHERE id = $1"
-	if err := r.store.db.QueryRow(query, id).Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories); err != nil {
+	query := "SELECT id, title, portion, calories, contraindication FROM dishes WHERE id = $1"
+	if err := r.store.db.QueryRow(query, id).Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories, &dish.Contraindications); err != nil {
 		return nil, err
 	}
 	return &dish, nil
@@ -74,7 +74,7 @@ func (r *DishesRepository) GetByIds(ids []string) ([]models.Dish, error) {
 
 	for rows.Next() {
 		var dish models.Dish
-		if err := rows.Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories); err != nil {
+		if err := rows.Scan(&dish.Id, &dish.Title, &dish.Portion, &dish.Calories, &dish.Contraindications); err != nil {
 			return nil, err
 		}
 		dishes = append(dishes, dish)

@@ -24,6 +24,17 @@
                                id="caloriesInput" placeholder="Calories">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Contradiction</label>
+                    <select class="form-control" id="exampleFormControlSelect2" name="contradictions">
+                        <option {{ if eq .Dish.Contraindications "fish"}}selected{{end}}>Fish</option>
+                        <option {{ if eq .Dish.Contraindications "milk"}}selected{{end}}>Milk</option>
+                        <option {{ if eq .Dish.Contraindications "peanut-butter"}}selected{{end}}>Peanut butter</option>
+                        <option {{ if eq .Dish.Contraindications "no-contradictions"}}selected{{end}}>No
+                            contradictions
+                        </option>
+                    </select>
+                </div>
             {{else}}
                 <div class="form-group">
                     <label for="titleInput">Title</label>
@@ -42,6 +53,15 @@
                         <input type="number" name="calories" value="" class="form-control"
                                id="caloriesInput" placeholder="Calories">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Contradiction</label>
+                    <select class="form-control" id="exampleFormControlSelect2" name="contradictions">
+                        <option value="fish">Fish</option>
+                        <option value="milk">Milk</option>
+                        <option value="peanut-butter">Peanut butter</option>
+                        <option value="no-contradictions">No contradictions</option>
+                    </select>
                 </div>
             {{ end}}
             <button type="submit" class="btn btn-primary">Submit</button>

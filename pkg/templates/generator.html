@@ -1,31 +1,62 @@
 {{define "content"}}
 
-    <div class="container">
-        <form>
-            <div>
+    <div class="container my-3">
+        <form method="post">
+            <div id="purpose-id" class="my-3">
                 <h1>Choose purpose of your diet </h1>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                           value="option1"
-                           checked>
+                    <input class="form-check-input" type="radio" name="purpose" id="exampleRadios1"
+                           value="lose-weight">
                     <label class="form-check-label" for="exampleRadios1">
-                        Default radio
+                        Lose weight
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                           value="option2">
+                    <input class="form-check-input" type="radio" name="purpose" id="exampleRadios2"
+                           value="sport">
                     <label class="form-check-label" for="exampleRadios2">
-                        Second default radio
+                        Sports nutrition
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                           value="option3">
+                    <input class="form-check-input" type="radio" name="purpose" id="exampleRadios3"
+                           value="healthy" checked>
                     <label class="form-check-label" for="exampleRadios3">
-                        Disabled radio
+                        Healthy nutrition
                     </label>
                 </div>
+            </div>
+            <div id="Contraindications-id" class="my-3">
+                <h1>Choose your contraindications</h1>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contraindications" id="exampleRadios1"
+                           value="fish">
+                    <label class="form-check-label" for="exampleRadios1">
+                        Fish
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contraindications" id="exampleRadios2"
+                           value="milk">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Milk
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contraindications" id="exampleRadios2"
+                           value="peanut-butter">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Peanut butter
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contradications" id="exampleRadios3"
+                           value="no-contradications" checked>
+                    <label class="form-check-label" for="exampleRadios3">
+                        No contraindications
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary my-3">Submit</button>
             </div>
         </form>
     </div>

@@ -13,6 +13,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Portion</th>
                 <th scope="col">Calories</th>
+                <th scope="col">Contradiction</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -25,6 +26,7 @@
                     <td>{{.Title}}</td>
                     <td>{{.Portion}}</td>
                     <td>{{.Calories}}</td>
+                    <td>{{.Contraindications}}</td>
                     <td><a class="btn btn-warning" href="/dishes/{{.Id}}/edit" role="button">Edit</a></td>
                     <td><a class="btn btn-danger" href="/dishes/{{.Id}}/delete" role="button">Delete</a></td>
                 </tr>

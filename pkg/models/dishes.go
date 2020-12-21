@@ -9,6 +9,7 @@ type Dish struct {
 	Title    string
 	Portion  int
 	Calories int
+	Contraindications string
 }
 
 func (dish *Dish) String() string {
