@@ -1,0 +1,5 @@
+bind_addr = ":8080"
+log_level = "debug"
+
+[store]
+database_url = "host=ec2-3-251-0-202.eu-west-1.compute.amazonaws.com user=tswuuqvbmejmqo password=a4fe36eb5297fda4008844162eadd40924c675d3393931ef9fc7c80c70588525 dbname=ddr3fato8g2cll sslmode=disable"
